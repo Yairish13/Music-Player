@@ -1,0 +1,6 @@
+put http://localhost:3000/album/1
+Content-Type: application/json
+
+{
+    "name":"Snap Out Of It"
+}
