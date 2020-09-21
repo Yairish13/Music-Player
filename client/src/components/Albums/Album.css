@@ -1,0 +1,9 @@
+img{
+    box-shadow: 5px 8px 5px 0px rgba(0, 0, 0, 0.75);
+
+}
+
+.albumpage{
+    float: left;
+    padding: 30px;
+}

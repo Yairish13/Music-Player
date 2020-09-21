@@ -1,6 +1,2 @@
-put http://localhost:3000/album/1
+get http://localhost:8080/playlists/2
 Content-Type: application/json
-
-{
-    "name":"Snap Out Of It"
-}

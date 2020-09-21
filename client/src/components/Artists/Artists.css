@@ -1,0 +1,12 @@
+/* :root{
+    background:#192F3C;
+    background: radial-gradient(circle, #FFFFCE 0%,#192F3C
+    75%);
+    box-shadow: 5px 8px 5px 0px rgba(0, 0, 0, 0.75);
+
+} */
+
+.artists{
+    text-align: center;
+    padding-left: 95px;
+}

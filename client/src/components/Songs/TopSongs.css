@@ -1,0 +1,24 @@
+.topSongs{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.slick-slider {
+    width: 93vw;
+    margin-left: 37px;
+    height:48vh; 
+}
+
+ .slick-arrow {
+    background-color: black;
+    height: 300px;
+    width: 30px;
+    border-radius: 100px;
+  } 
+  .slick-arrow:hover,
+  .slick-arrow:active,
+  .slick-arrow:focus {
+    background-color:#ee5050;
+  } 
+
+
