@@ -10,10 +10,10 @@ function Artist({ artist }) {
   };
   return (
     <div className="artistPage">
-      <Link style={style} to={`/artist/${artist.id}`}>
+      <Link style={style} to={`/artist/${artist.artistId}`}>
         <img className="artistpic" src={artist.cover_img}></img>
         <br></br>
-        {artist.name}
+        {artist.artistName}
       </Link>
     </div>
   );

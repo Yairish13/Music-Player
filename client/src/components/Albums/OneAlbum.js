@@ -44,15 +44,15 @@ function OneAlbum() {
           <h1>{album[0].albumName}</h1>
           <div>
           <Link style={style2} to={`/artist/${album[0].artistId}`}>
-            <h3>by {album[0].name}</h3>
+            <h3>by {album[0].artistName}</h3>
             <img className="albumpic" src={album[0].cover_img} />
           </Link>
           </div>
-
+          
           <div>
             <Slider {...settings}>
               {album.map((topSong) => (
-                <TopSong topSong={topSong} key={topSong.id} query={`/song/${topSong.songId}?album=${album[0].album_id}`} />
+                <TopSong topSong={topSong} key={topSong.id} query={`/song/${album[0].songId}?album=${album[0].albumId}`} />
               ))}
             </Slider>
           </div>

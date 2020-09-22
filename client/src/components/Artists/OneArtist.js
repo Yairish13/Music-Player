@@ -50,12 +50,12 @@ function OneArtist() {
           <h2>{artistSongs[0].artistName}'s Songs</h2>
           <Slider {...settings}>
             {artistSongs.map((topSong) => (
-              <TopSong topSong={topSong} key={topSong.id} query={`/song/${topSong.id}?artist=${artistSongs[0].artistId}`} />
+              <TopSong topSong={topSong} key={topSong.songId} query={`/song/${topSong.id}?artist=${artistSongs[0].artistId}`} />
             ))}
           </Slider>
           <h2>{artistSongs[0].artistName}'s Albums</h2>
             {artistAlbums.map((topAlbum) => (
-              <TopAlbum topAlbum={topAlbum} key={topAlbum.id} />
+              <TopAlbum topAlbum={topAlbum} key={topAlbum.albumId} />
             ))}
             <br></br>
         </div>

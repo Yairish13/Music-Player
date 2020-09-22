@@ -20,10 +20,10 @@ function TopArtist({ topArtist }) {
       <Container>
         <Col>
           <Card>
-            <Link style={style2} to={`/artist/${topArtist.id}`}>
+            <Link style={style2} to={`/artist/${topArtist.artistId}`}>
             <Card.Img style={style} src={topArtist.cover_img} />
             <br></br>
-            {topArtist.name}
+            {topArtist.artistName}
             </Link>
           </Card>
         </Col>

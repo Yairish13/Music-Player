@@ -24,13 +24,13 @@ function TopAlbum({ topAlbum }) {
       <Container>
         <Col>
           <Card>
-          <Link style={style2} to={`/album/${topAlbum.id}`}>
+          <Link style={style2} to={`/album/${topAlbum.albumId}`}>
             <Card.Img variant="top" style={style} src={topAlbum.cover_img} />
             <br></br>
             <Card.Body>
-              {topAlbum.name}
+              {topAlbum.albumName}
               <br></br>
-              {topAlbum.arname}
+              {topAlbum.artistName}
             </Card.Body>
             </Link>
           </Card>

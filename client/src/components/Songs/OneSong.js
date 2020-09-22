@@ -96,7 +96,7 @@ function OneSong() {
     textDecoration: "none",
     cursor: "pointer",
   };
-  console.log(song)
+  console.log(list)
 
   return (
     <>
@@ -131,8 +131,8 @@ function OneSong() {
               return (
                 <TopSong
                   topSong={song}
-                  key={song.id}
-                  query={`/song/${song.id}?${queryName}`}
+                  key={song.songId}
+                  query={`/song/${song.songId}?${queryName}`}
                 />
               );
             })}

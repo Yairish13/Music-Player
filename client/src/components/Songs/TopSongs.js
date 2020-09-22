@@ -46,7 +46,7 @@ function TopSongs() {
       </div>
       <Slider {...settings} >
         {topSongs.map((topSong) => (
-          <TopSong topSong={topSong} key={topSong.id} />
+          <TopSong topSong={topSong} key={topSong.songId} />
         ))}
       </Slider>
     </div>

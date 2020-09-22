@@ -44,7 +44,7 @@ function TopAlbums() {
 
       <Slider {...settings}>
         {topAlbums.map((topAlbum) => (
-          <TopAlbum topAlbum={topAlbum} key={topAlbum.id} />
+          <TopAlbum topAlbum={topAlbum} key={topAlbum.albumId} />
         ))}
       </Slider>
     </div>

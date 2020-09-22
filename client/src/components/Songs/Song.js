@@ -18,8 +18,8 @@ function Song({ song }) {
           <div>
             <PlayCircleOutlineIcon style={{position:"absolute", right:"90%" }} />  
             <div className="content"> 
-          {song.artist_name} - {song.title} {song.length} Album:
-          {song.album_name}
+          {song.artistName} - {song.title} {song.length} Album:
+          {song.albumName}
           </div>
         </div>
       </Link>

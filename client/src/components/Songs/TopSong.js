@@ -24,7 +24,7 @@ function TopSong({ topSong, query }) {
     cursor: "pointer",
   };
 
-  let queryLink = query ? query : `/song/${topSong.id}?topsong=true`;
+  let queryLink = query ? query : `/song/${topSong.songId}?topsong=true`;
   
   return (
     <div>
@@ -43,7 +43,7 @@ function TopSong({ topSong, query }) {
               <br></br>
                 {topSong.title}
                 <br></br>
-                {topSong.name}
+                {topSong.artistName}
             </Card.Body>
             </Link>
 

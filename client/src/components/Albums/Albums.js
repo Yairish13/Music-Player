@@ -21,7 +21,7 @@ function Albums() {
 
       <div className="albums">
         {albums.map((album) => (
-          <Album album={album} key={album.id} />
+          <Album album={album} key={album.albumId} />
         ))}
       </div>
     </>
