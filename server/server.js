@@ -51,7 +51,7 @@ app.get("/artists", (req, res) => {
 
 app.get("/top_songs", (req, res) => {
   let sql =
-    "SELECT s.title, sum(i.play_count) AS Top_Songs, s.youtube_link, ar.name as artistName, s.id,s.id as songId, al.id as albumId,al.name as albumName  FROM spotify_player.songs s  JOIN interactions i on s.id = i.songs_id JOIN albums al on s.album_id=al.id  JOIN artists ar on s.artist_id=ar.id GROUP BY s.title ORDER BY Top_Songs desc LIMIT 20;";
+    "SELECT s.title, sum(i.play_count) AS Top_Songs, s.youtube_link, ar.name as artistName, s.id,s.id as songId, al.id as albumId,al.name as albumName,ar.id as artistId  FROM spotify_player.songs s  JOIN interactions i on s.id = i.songs_id JOIN albums al on s.album_id=al.id  JOIN artists ar on s.artist_id=ar.id GROUP BY s.title ORDER BY Top_Songs desc LIMIT 20;";
   let query = db.query(sql, (error, result) => {
     if (error) throw error;
     res.send(result);
@@ -126,7 +126,7 @@ app.get("/albumByArtist/:id",(req,res)=>{
 })
 
 app.get("/artists/:id",(req,res)=>{
-  db.query(`SELECT ar.name as artistName, ar.cover_img,ar.id as artistId ,
+  db.query(`SELECT ar.name as artistName, ar.cover_img, ar.id as artistId ,
   al.name as albumName, al.id as albumId,
    s.* FROM artists ar
   JOIN songs s on s.artist_id=ar.id JOIN albums al on al.id=s.album_id 

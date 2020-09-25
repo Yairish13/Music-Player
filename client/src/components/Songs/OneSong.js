@@ -96,7 +96,7 @@ function OneSong() {
     textDecoration: "none",
     cursor: "pointer",
   };
-  console.log(list)
+  console.log(song)
 
   return (
     <>
