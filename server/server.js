@@ -69,7 +69,7 @@ app.get("/top_artists", (req, res) => {
 
 app.get("/top_albums", (req, res) => {
   let sql =
-    "SELECT a.*, a.name as albumName, a.id as artistId, ar.name as artistName FROM spotify_player.songs s  JOIN interactions i on s.id = i.songs_id JOIN albums a on a.id=s.artist_id JOIN artists ar on ar.id=a.artist_id GROUP BY a.name ORDER BY sum(i.play_count) desc LIMIT 20;";
+    "SELECT a.*, a.name as albumName, a.id as albumId, ar.name as artistName FROM spotify_player.songs s  JOIN interactions i on s.id = i.songs_id JOIN albums a on a.id=s.artist_id JOIN artists ar on ar.id=a.artist_id GROUP BY a.name ORDER BY sum(i.play_count) desc LIMIT 20;";
   let query = db.query(sql, (error, result) => {
     if (error) throw error;
     res.send(result);
