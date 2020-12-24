@@ -14,10 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         {
           foreignKey:"songId",
         });
-        this.belongsTo(models.Users,
-          {
-            foreignKey:"userId",
-          });
+        // this.belongsTo(models.Users,
+        //   {
+        //     foreignKey:"userId",
+        //   });
     }
   };
   Interactions.init({
