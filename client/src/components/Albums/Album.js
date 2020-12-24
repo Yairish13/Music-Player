@@ -10,10 +10,10 @@ function Album({ album }) {
       };
   return (
     <div className="albumpage">
-      <Link style={style} to={`/album/${album.albumId}`}>
-        <img src={album.cover_img}></img>
+      <Link style={style} to={`/albums/${album.id}`}>
+        <img src={album.albumImg}></img>
         <br></br>
-        {album.albumName} by {album.artistName}
+        {album.name} by {album.Artist.name}
       </Link>
     </div>
   );

@@ -11,15 +11,16 @@ function Song({ song }) {
     textDecoration: "none",
     cursor: "pointer",
   };
+
   return (
     <div>
         <div className="songPage">
-        <Link style={style1} to={`/song/${song.id}`}>
+        <Link style={style1} to={`/songs/${song.id}`}>
           <div>
             <PlayCircleOutlineIcon style={{position:"absolute", right:"90%" }} />  
             <div className="content"> 
-          {song.artistName} - {song.title} {song.length} Album:
-          {song.albumName}
+          {song.Artist.name} - {song.name} {song.length} Album:
+          {song.Album.name}
           </div>
         </div>
       </Link>

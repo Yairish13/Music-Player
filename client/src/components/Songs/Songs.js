@@ -21,7 +21,7 @@ function Songs() {
     <div className="songs">
       <h1>Songs</h1>
       {songs.map((song) => (
-        <Song song={song} key={song.songId} />
+        <Song song={song} key={song.id} />
       ))}
     </div>
   );

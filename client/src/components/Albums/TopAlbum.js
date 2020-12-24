@@ -17,20 +17,19 @@ function TopAlbum({ topAlbum }) {
     textDecoration: "none",
     cursor: "pointer"
   };
-  console.log(topAlbum)
   return (
     
     <div>
       <Container>
         <Col>
           <Card>
-          <Link style={style2} to={`/album/${topAlbum.albumId}`}>
-            <Card.Img variant="top" style={style} src={topAlbum.cover_img} />
+          <Link style={style2} to={`/albums/${topAlbum.id}`}>
+            <Card.Img variant="top" style={style} src={topAlbum.albumImg} />
             <br></br>
             <Card.Body>
-              {topAlbum.albumName}
+              {topAlbum.name}
               <br></br>
-              {topAlbum.artistName}
+              {topAlbum.Artist.name}
             </Card.Body>
             </Link>
           </Card>

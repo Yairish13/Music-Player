@@ -30,16 +30,17 @@ function OnePlaylist() {
       slidesToScroll: 1,
       variableWidth: true,
     };
+    console.log(playlist)
   
     return (
       <>
-        {playlist.length > 0 && (
+        {playlist.Songs && (
           <div className="oneplaylist">
-            <h1>{playlist[0].plName}</h1>
-            <img className="playlistpic" src={playlist[0].cover_img} />
+            <h1>{playlist.name}</h1>
+            <img className="playlistpic" src={playlist.playlistImg} />
             <Slider {...settings}>
-              {playlist.map((topSong) => (
-                <TopSong topSong={topSong} key={topSong.id} query={`/song/${topSong.songId}?playlist=${playlist[0].id}`} />
+              {playlist.Songs.map((topSong) => (
+                <TopSong topSong={topSong} key={topSong.id} query={`/songs/${topSong.id}?playlists=${playlist.id}`} />
               ))}
             </Slider>
           </div>
