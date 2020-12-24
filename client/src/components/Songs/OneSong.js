@@ -6,9 +6,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TopSong from "../Songs/TopSong";
 import ReactPlayer from "react-player";
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import './OneSong.css'
+import SkipNextIcon from "@material-ui/icons/SkipNext";
+import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
+import "./OneSong.css";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -24,54 +24,61 @@ function OneSong() {
 
   useEffect(() => {
     (async () => {
+
       try {
         const { data } = await axios.get(`/songs/${id}`);
-        setSong(data[0]);
-        if (query.get("album")) {
-          setQueryName(`album=${query.get("album")}`);
-          const { data } = await axios.get(`/albums/${query.get("album")}`);
+        console.log(data);
+        setSong(data);
+        if (query.get("albums")) {
+          setQueryName(`albums=${query.get("albums")}`);
+          const { data } = await axios.get(`/albums/${query.get("albums")}`);
           setList(data);
-        } else if (query.get("artist")) {
-          setQueryName(`artist=${query.get("artist")}`);
-          const { data } = await axios.get(`/artists/${query.get("artist")}`);
+        } else if (query.get("artists")) {
+          setQueryName(`artists=${query.get("artists")}`);
+          const { data } = await axios.get(`/artists/${query.get("artists")}`);
           setList(data);
-        } else if (query.get("playlist")) {
-          setQueryName(`playlist=${query.get("playlist")}`);
+        } else if (query.get("playlists")) {
+          setQueryName(`playlists=${query.get("playlists")}`);
           const { data } = await axios.get(
-            `/playlists/${query.get("playlist")}`
+            `/playlists/${query.get("playlists")}`
           );
           setList(data);
         } else {
           setQueryName(`top_songs=true`);
-
-          const { data } = await axios.get(`/top_songs`);
+          const { data } = await axios.get(`/songs/top_songs`);
           setList(data);
         }
       } catch (error) {}
+      try{
+        console.log("list"+ list)
+        if(!list.Songs){
+          list.Songs = list
+        }
+      }
+      catch(error){console.log(error)}
+
     })();
   }, [id]);
 
-  const next=()=>{
-    const counter = list.findIndex(item=>item.title == song.title)
-    if(counter == list.length-1){
-      alert("End of the list")
+  const next = () => {
+    const counter = list.Songs.findIndex((item) => item.name == song.name);
+    if (counter == list.Songs.length - 1) {
+      alert("End of the list");
+      setSong(list.Songs[0])
+    } else {
+      setSong(list.Songs[counter + 1]);
     }
-    else{
-      setSong(list[counter+1])
-    }
-  }
+  };
 
-  const previous =() =>{
-    const counter = list.findIndex(item=>item.title == song.title)
-    if(counter == 0){
-      alert("Start of the list")
+  const previous = () => {
+    const counter = list.Songs.findIndex((item) => item.name == song.name);
+    if (counter == 0) {
+      alert("Start of the list");
+      setSong(list.Songs[0])
+    } else {
+      setSong(list.Songs[counter - 1]);
     }
-    else{
-      console.log(song)
-      console.log(counter)
-      setSong(list[counter-1])
-    }
-  }
+  };
 
   const settings = {
     dots: true,
@@ -84,11 +91,7 @@ function OneSong() {
   const style = {
     borderRadius: "25px",
     overflow: "hidden",
-    boxShadow:"5px 8px 5px 0px rgba(0, 0, 0, 0.75)"
-  //   marginBottom: "40px",
-  //   left:"50%",
-  //   position:"relative",
-  // transform: 'translate(-50%, 0%)',
+    boxShadow: "5px 8px 5px 0px rgba(0, 0, 0, 0.75)",
   };
 
   const style2 = {
@@ -96,43 +99,55 @@ function OneSong() {
     textDecoration: "none",
     cursor: "pointer",
   };
-  console.log(song)
-
   return (
     <>
-      {list.length > 0 && (
+      {list.Songs && song && (
         <div className="onesong">
-          <h1>{song.title}</h1>
-          <Link style={style2} to={`/artist/${song.artistId}`}>
-            <h2>by {song.artistName}</h2>
+          <h1>{song.name}</h1>
+          <Link style={style2} to={`/artists/${song.artistId}`}>
+            <h2>by {song.Artist.name}</h2>
           </Link>
 
-
-          <Link style={style2} to={`/album/${song.albumId}`}>
-            <h4>{song.albumName}</h4>
+          <Link style={style2} to={`/albums/${song.albumId}`}>
+            <h4>{song.Album.name}</h4>
           </Link>
-          <div className='vidnbtn'>
-          <SkipPreviousIcon style={{fontSize:"100px",paddingTop:"100px",paddingLeft:"100px"}} 
-           onClick={previous}>previous</SkipPreviousIcon>
-          <ReactPlayer
-          controls={true}
-            style={style}
-            playing={true}
-            width="350px"
-            height="280px"
-            url={song.youtube_link}
-          />
-          <SkipNextIcon style={{fontSize:"100px", paddingTop:"100px",paddingRight:"100px"}}
-           onClick={next}>Next</SkipNextIcon>
+          <div className="vidnbtn">
+            <SkipPreviousIcon
+              style={{
+                fontSize: "100px",
+                paddingTop: "100px",
+                paddingLeft: "100px",
+              }}
+              onClick={previous}
+            >
+              previous
+            </SkipPreviousIcon>
+            <ReactPlayer
+              controls={true}
+              style={style}
+              playing={true}
+              width="350px"
+              height="280px"
+              url={song.youtubeLink}
+            />
+            <SkipNextIcon
+              style={{
+                fontSize: "100px",
+                paddingTop: "100px",
+                paddingRight: "100px",
+              }}
+              onClick={next}
+            >
+              Next
+            </SkipNextIcon>
           </div>
           <Slider {...settings}>
-            {list.map((song) => {
+            {list.Songs.map((song) => {
               console.log(song);
               return (
                 <TopSong
                   topSong={song}
-                  key={song.songId}
-                  query={`/song/${song.songId}?${queryName}`}
+                  query={`/songs/${song.id}?${queryName}`}
                 />
               );
             })}

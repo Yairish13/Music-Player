@@ -12,7 +12,7 @@ function TopPlaylists() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get("/top_playlists");
+        const { data } = await axios.get("/playlists/top_playlists");
         settopPlaylists(data);
       } catch (error) {
         console.log(error.message);

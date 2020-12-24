@@ -13,7 +13,7 @@ function TopSongs() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get("/top_songs");
+        const { data } = await axios.get("/songs/top_songs");
         setTopSongs(data);
       } catch (error) {
         console.log(error.message);
@@ -27,7 +27,7 @@ function TopSongs() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
-    variableWidth:true
+    variableWidth: true,
   };
 
   const style = {
@@ -37,18 +37,22 @@ function TopSongs() {
 
   return (
     <div>
-      <div className="topSongs">
-        <h2>Top Songs</h2>
-        <Link to="/songs" style={style}>
-          See all
-        </Link>
-        <br></br>
-      </div>
-      <Slider {...settings} >
-        {topSongs.map((topSong) => (
-          <TopSong topSong={topSong} key={topSong.songId} />
-        ))}
-      </Slider>
+      {topSongs.Songs && (
+        <>
+          <div className="topSongs">
+            <h2>Top Songs</h2>
+            <Link to="/songs" style={style}>
+              See all
+            </Link>
+            <br></br>
+          </div>
+          <Slider {...settings}>
+            {topSongs.Songs.map((topSong) => (
+              <TopSong topSong={topSong} key={topSong.id} />
+            ))}
+          </Slider>
+        </>
+      )}
     </div>
   );
 }

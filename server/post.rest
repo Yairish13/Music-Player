@@ -1,2 +1,2 @@
-get http://localhost:8080/playlists/2
+get http://localhost:8080/songs/top_songs
 Content-Type: application/json

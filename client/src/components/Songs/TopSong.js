@@ -15,8 +15,6 @@ function TopSong({ topSong, query }) {
     overflow: "hidden",
     // boxShadow: "0px 0px 2px 2px rgba(0,0,0,0.75)"
     boxShadow:"5px 8px 5px 0px rgba(0, 0, 0, 0.75)"
-
-
   };
   const style1 = {
     color: "black",
@@ -24,8 +22,8 @@ function TopSong({ topSong, query }) {
     cursor: "pointer",
   };
 
-  let queryLink = query ? query : `/song/${topSong.songId}?topsong=true`;
-  
+  let queryLink = query ? query : `/songs/${topSong.id}?top_songs=true`;
+  console.log(topSong)
   return (
     <div>
       <Container>
@@ -35,15 +33,15 @@ function TopSong({ topSong, query }) {
               style={style2}
               width="250px"
               height="200px"
-              url={topSong.youtube_link}
+              url={topSong.youtubeLink}
             />
               <Link style={style1} to={queryLink}>
 
             <Card.Body>
               <br></br>
-                {topSong.title}
+                {topSong.name}
                 <br></br>
-                {topSong.artistName}
+                {topSong.Artist.name}
             </Card.Body>
             </Link>
 

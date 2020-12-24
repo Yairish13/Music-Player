@@ -9,8 +9,9 @@ import "./OneArtist.css";
 import TopAlbum from "../Albums/TopAlbum";
 
 function OneArtist() {
-  const [artistSongs, setArtistSongs] = useState([]);
-  const [artistAlbums, setArtistAlbum] = useState([]);
+  // const [artistSongs, setArtistSongs] = useState(null);
+  // const [artistAlbums, setArtistAlbum] = useState(null);
+  const [artist, setArtist] = useState(null);
 
   const { id } = useParams();
 
@@ -18,13 +19,8 @@ function OneArtist() {
     (async () => {
       try {
         const { data } = await axios.get(`/artists/${id}`);
-        setArtistSongs(data);
-      } catch (error) {
-        console.log(error.message);
-      }
-      try {
-        const { data } = await axios.get(`/albumByArtist/${id}`);
-        setArtistAlbum(data);
+        setArtist(data)
+        console.log(data)
       } catch (error) {
         console.log(error.message);
       }
@@ -43,19 +39,19 @@ function OneArtist() {
 
   return (
     <div>
-      {artistAlbums.length > 0 && (
+      {artist && (
         <div className="oneartist">
-          <h1>{artistSongs[0].artistName}</h1>
-          <img className="artistpic" src={artistSongs[0].cover_img} />
-          <h2>{artistSongs[0].artistName}'s Songs</h2>
+          <h1>{artist.name}</h1>
+          <img className="artistpic" src={artist.artistImg} />
+          <h2>{artist.name}'s Songs</h2>
           <Slider {...settings}>
-            {artistSongs.map((topSong) => (
-              <TopSong topSong={topSong} key={topSong.songId} query={`/song/${topSong.id}?artist=${artistSongs[0].artistId}`} />
+            {artist.Songs.map((topSong) => (
+              <TopSong topSong={topSong} key={topSong.id} query={`/songs/${topSong.id}?artists=${topSong.artistId}`} />
             ))}
           </Slider>
-          <h2>{artistSongs[0].artistName}'s Albums</h2>
-            {artistAlbums.map((topAlbum) => (
-              <TopAlbum topAlbum={topAlbum} key={topAlbum.albumId} />
+          <h2>{artist.name}'s Albums</h2>
+            {artist.Albums.map((topAlbum) => (
+              <TopAlbum topAlbum={topAlbum} key={topAlbum.id} />
             ))}
             <br></br>
         </div>

@@ -8,7 +8,7 @@ import TopSong from "../Songs/TopSong";
 import "./OneAlbum.css";
 
 function OneAlbum() {
-  const [album, setAlbum] = useState([]);
+  const [album, setAlbum] = useState(null);
 
   const { id } = useParams();
 
@@ -17,6 +17,7 @@ function OneAlbum() {
       try {
         const { data } = await axios.get(`/albums/${id}`);
         setAlbum(data);
+        console.log(data)
       } catch (error) {}
     })();
   }, [id]);
@@ -35,24 +36,23 @@ function OneAlbum() {
     cursor: "pointer",
   };
 
-  console.log(album);
-
   return (
     <>
-      {album.length > 0 && (
+    
+      {album && (
         <div className="albumPage">
-          <h1>{album[0].albumName}</h1>
+          <h1>{album.name}</h1>
           <div>
-          <Link style={style2} to={`/artist/${album[0].artistId}`}>
-            <h3>by {album[0].artistName}</h3>
-            <img className="albumpic" src={album[0].cover_img} />
+          <Link style={style2} to={`/artists/${album.artistId}`}>
+            <h3>by {album.Artist.name}</h3>
+            <img className="albumpic" src={album.albumImg} />
           </Link>
           </div>
           
           <div>
             <Slider {...settings}>
-              {album.map((topSong) => (
-                <TopSong topSong={topSong} key={topSong.id} query={`/song/${album[0].songId}?album=${album[0].albumId}`} />
+              {album.Songs.map((topSong) => (
+                <TopSong topSong={topSong} key={topSong.id} query={`/songs/${topSong.id}?albums=${topSong.albumId}`} />
               ))}
             </Slider>
           </div>

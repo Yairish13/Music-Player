@@ -12,7 +12,7 @@ function TopArtists() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get("/top_artists");
+        const { data } = await axios.get("/artists/top_artists");
         setTopArtists(data);
       } catch (error) {
         console.log(error.message);
@@ -32,18 +32,17 @@ function TopArtists() {
     color: "white",
     textDecoration: "none",
   };
-
   return (
     <div>
       <div className="topArtists">
         <h2>Top Artists</h2>
-        <Link style={style} to="/artists">
+        <Link style={style} to={`/artists/${topArtists.id}`}>
           See all
         </Link>
       </div>
       <Slider {...settings}>
         {topArtists.map((topArtist) => (
-          <TopArtist topArtist={topArtist} key={topArtist.artistId} />
+          <TopArtist topArtist={topArtist} key={topArtist.id} />
         ))}
       </Slider>
     </div>

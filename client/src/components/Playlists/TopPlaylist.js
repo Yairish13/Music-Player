@@ -21,8 +21,8 @@ function TopPlaylist({ topPlaylist }) {
       <Container>
         <Col>
           <Card>
-            <Link style={style2} to={`/playlist/${topPlaylist.id}`}>
-              <Card.Img style={style} src={topPlaylist.cover_img} />
+            <Link style={style2} to={`/playlists/${topPlaylist.id}`}>
+              <Card.Img style={style} src={topPlaylist.playlistImg} />
               <br></br>
               {topPlaylist.name}
             </Link>

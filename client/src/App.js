@@ -18,15 +18,15 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={Home}/>
-        <Route path="/songs" component={Songs} />
-        <Route path="/artists" component={Artists} />
-        <Route path="/albums" component={Albums} />
-        <Route path="/playlists" component={Playlists} />
-        <Route path="/artist/:id" component={OneArtist} />
-        <Route path="/album/:id" component={OneAlbum} />
-        <Route path="/playlist/:id" component={OnePlaylist} />
-        <Route path="/song/:id" component={OneSong}/>
-        <Route exact path="/*" component={Error}/>
+        <Route exact path="/songs" component={Songs} />
+        <Route exact path="/artists" component={Artists} />
+        <Route exact path="/albums" component={Albums} />
+        <Route exact path="/playlists" component={Playlists} />
+        <Route path="/artists/:id" component={OneArtist} />
+        <Route path="/albums/:id" component={OneAlbum} />
+        <Route path="/playlists/:id" component={OnePlaylist} />
+        <Route path="/songs/:id" component={OneSong}/>
+        {/* <Route exact path="/*" component={Error}/> */}
 
       </Switch>
 

@@ -11,8 +11,8 @@ function Playlist({playlist}) {
       };
     return (
         <div className="playlistpage">
-          <Link style={style2} to={`/playlist/${playlist.id}`}>
-            <img src={playlist.cover_img}></img><br></br>
+          <Link style={style2} to={`/playlists/${playlist.id}`}>
+            <img src={playlist.playlistImg}></img><br></br>
             {playlist.name}
             </Link>
         </div>
